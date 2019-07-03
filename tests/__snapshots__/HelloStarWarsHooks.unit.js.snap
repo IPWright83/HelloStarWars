@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloStarWarsHooks ComponentDidMount Obtains result and sets data correctly 1`] = `
+<HelloStarWarsHooks
+  id="1"
+>
+  <h1>
+    Hello !dlroW... Oh dear, something went wrong!
+  </h1>
+</HelloStarWarsHooks>
+`;

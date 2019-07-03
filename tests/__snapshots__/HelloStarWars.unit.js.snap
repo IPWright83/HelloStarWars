@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloStarWars ComponentDidMount Handles an error in the web request correctly 1`] = `
+<HelloStarWars
+  id="foobar"
+>
+  <h1>
+    Hello 
+    !dlroW... Oh dear, something went wrong
+    !
+  </h1>
+</HelloStarWars>
+`;
+
+exports[`HelloStarWars ComponentDidMount Obtains result and sets data correctly 1`] = `
+<HelloStarWars
+  id="1"
+>
+  <h1>
+    Hello 
+    Jedi Master
+    !
+  </h1>
+</HelloStarWars>
+`;
+
+exports[`HelloStarWars Renders with a place holder 1`] = `
+<h1>
+  Hello 
+  ...
+  !
+</h1>
+`;
