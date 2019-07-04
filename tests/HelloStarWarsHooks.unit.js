@@ -1,55 +1,47 @@
 import React from "react";
-import renderer from 'react-test-renderer';
-import { act } from 'react-dom/test-utils';
-import { render } from '@testing-library/react';
+import renderer from "react-test-renderer";
+import { act } from "react-dom/test-utils";
+import { render } from "@testing-library/react";
 
 import HelloStarWars from "../src/HelloStarWarsHooks";
-import useFetch from "../src/useFetch";
-
-//const mockFetch = jest.fn();
-//jest.mock("../src/useFetch", () => () => mockFetch());
 
 describe("HelloStarWarsHooks", () => {
+  it("Renders with a place holder", () => {
+    // Render our component
+    // @testing-library/react's render wraps act by default
+    const { asFragment } = render(<HelloStarWars id="1" />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 
-	it("Renders with a place holder", () => {
-		// Render our component
-		const { asFragment } = render(<HelloStarWars id="1" />);
+  describe("ComponentDidMount", () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
 
-		expect(asFragment()).toMatchSnapshot();
-	});
+    it("Obtains result and sets data correctly", async () => {
+      let result;
 
-	describe("ComponentDidMount", () => {
-		
-		beforeEach(() => {
-			fetch.resetMocks();
-		});
+      fetch.mockResponseOnce(JSON.stringify({ name: "Jedi Master" }));
 
-		it("Obtains result and sets data correctly", async () => {
-			let result;
+      // Render our component within an act to flush the useFetch
+      await act(async () => {
+        result = render(<HelloStarWars id="1" />);
+      });
 
-			fetch.mockResponseOnce(JSON.stringify({ name: 'Jedi Master' }));
+      expect(result.asFragment()).toMatchSnapshot();
+    });
 
-			// Render our component within an act to flush the useFetch
-			act(() => {
-				const { asFragment } = render(<HelloStarWars id="1" />);
-				result = asFragment();
-			});
+    it("Handles an error in the web request correctly", async () => {
+      let result;
 
-			expect(result).toMatchSnapshot();
-		});
+      fetch.mockReject(new Error("Invalid ID"));
 
-		it("Handles an error in the web request correctly", async () => {
-			let result;
+      // Render our component within an act to flush the useFetch
+      await act(async () => {
+        result = render(<HelloStarWars id="foobar" />);
+      });
 
-			fetch.mockReject(new Error("Invalid ID"));
-
-			// Render our component within an act to flush the useFetch
-			act(() => {
-				const { asFragment } = render(<HelloStarWars id="foobar" />);
-				result = asFragment();
-			});
-			
-			expect(result).toMatchSnapshot();
-		});
-	});
+      expect(result.asFragment()).toMatchSnapshot();
+    });
+  });
 });
