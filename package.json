@@ -1,5 +1,5 @@
 {
-  "name": "jestexample",
+  "name": "HelloStarWars",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.5",
+    "@testing-library/react": "^8.0.4",
     "babel-loader": "^8.0.6",
     "cross-fetch": "^3.0.4",
     "cypress": "^3.3.2",
