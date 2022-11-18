@@ -29,7 +29,7 @@
     "react-test-renderer": "^16.8.6",
     "supertest": "^4.0.2",
     "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "react": "16.9.0-alpha.0",
